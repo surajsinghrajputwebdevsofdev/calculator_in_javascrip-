@@ -1,0 +1,119 @@
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+
+    .card {
+        width: 400px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    }
+
+    .container {
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+
+    .display {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 1.5em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+    }
+
+    .buttons button {
+        padding: 10px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .buttons button.operators {
+        background-color: #2196f3;
+    }
+
+    .buttons button:hover {
+        background-color: #45a049;
+    }
+
+    .buttons button.operators:hover {
+        background-color: #1e87d4;
+    }
+</style>
+<body>
+    <div class="card">
+
+    <div class="container">
+        <input type="text" class="display"/>
+        <div class="buttons">
+        <button data-value="1">1</button>
+            <button data-value="2">2</button>
+            <button data-value="3">3</button>
+            <button data-value="4">4</button>
+            <button data-value="5">5</button>
+            <button data-value="6">6</button>
+            <button data-value="7">7</button>
+            <button data-value="8">8</button>
+            <button data-value="9">9</button>
+            <button data-value="0">0</button>
+            <button data-value="*" class="operators">*</button>
+            <button data-value="+" class="operators">+</button>
+            <button data-value="-" class="operators">-</button>
+            <button data-value="." class="operators">.</button>
+            <button data-value="/" class="operators">/</button>
+            <button data-value="AC" class="operators">AC</button>
+            <button data-value="DEL" class="operators">DEL</button>
+            <button data-value="=" class="operators">=</button>          
+        </div>
+        </div>
+        </div>
+</body>
+<script>
+    //variable liya ek display naam ka
+    const display = document.querySelector('.display');
+    document.querySelectorAll('.buttons button').forEach(button => {
+        // addEventListener two parameters first ke kon sa event 
+        // legana hai or secound  function ka name or esme direct event ka 
+        // naam likhna hai  jese mai es button per click keru to ye code run kere
+        button.addEventListener('click', () => {
+            const value = button.dataset.value;
+            //dataset is a object that collect all the data from button
+            switch (value) {
+                case 'AC':
+                    display.value = '';
+                    break;
+                case 'DEL':
+                    display.value = display.value.slice(0, -1);
+                    break;
+                case '=':
+                    display.value = eval(display.value);
+                    break;
+                default:
+                    display.value += value;
+            }
+        });
+    });
+
+</script>
